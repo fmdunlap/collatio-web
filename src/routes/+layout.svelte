@@ -1,8 +1,7 @@
 <script>
 	import '../app.css';
+	import Header from '../component/header.svelte';
 </script>
 
-<header>
-	<h1>Default header</h1>
-</header>
+<Header />
 <slot />
