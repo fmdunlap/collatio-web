@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Chevron from '../assets/Chevron.svelte';
+	import { goto } from '$app/navigation';
+	import Chevron from '../../assets/Chevron.svelte';
 </script>
 
 <!-- Collatio Header -->
@@ -15,7 +16,18 @@
 			<li>2. Union, combination</li>
 			<li>3. Comparison, collation (of facts)</li>
 		</ol>
-		<p class="flex-grow">You Found Me!</p>
+		<div class="flex-grow">
+			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<p
+				class="select-none mx-auto my-auto"
+				on:click={() => {
+					goto('/redirect/');
+				}}
+			>
+				You Found Me!
+			</p>
+		</div>
 		<Chevron class="mx-auto bottom-4" />
 	</div>
 </div>
