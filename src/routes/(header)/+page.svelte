@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Chevron from '../../assets/Chevron.svelte';
+	import Avatar from '../../component/Avatar.svelte';
 	import ProjectCard from '../../component/ProjectCard.svelte';
 </script>
 
@@ -27,4 +28,7 @@
 		imageSrc="https://placekitten.com/400/250"
 		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
 	/>
+</div>
+<div class="mx-10 mt-10 pb-6">
+	<Avatar imageSrc="https://placekitten.com/200/200" imageAlt="A ktten" name="Kitten" />
 </div>
