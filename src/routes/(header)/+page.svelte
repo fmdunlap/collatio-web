@@ -20,3 +20,11 @@
 		<Chevron />
 	</div>
 </div>
+<div class="mx-4 mt-10 pb-4">
+	<ProjectCard
+		title="Project #1"
+		imageAlt="A ktten"
+		imageSrc="https://placekitten.com/400/250"
+		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+	/>
+</div>
