@@ -1,10 +1,13 @@
 <script lang="ts">
 	import Chevron from '../../assets/Chevron.svelte';
-	import Avatar from '../../component/Avatar.svelte';
+	import AvatarView from '../../component/AvatarView.svelte';
 	import ProjectCard from '../../component/ProjectCard.svelte';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { cubicIn } from 'svelte/easing';
+	import { projectsScrollPoint, comradesScrollPoint } from '../../stores/HeaderScrollPointStore';
+	import type { Avatar } from '../../types/avatar';
+	import type { Project } from '../../types/project';
 
 	const BOTTOM_BAR_EXTENSION_FACTOR = 1.15;
 	const BOTTOM_BAR_JOKE_TEXT = [
@@ -19,48 +22,97 @@
 		'The bottom of the page is a lonely place. Thanks for keeping me company down here!',
 		'Warning: Scrolling to the bottom may cause a sense of achievement and an overwhelming desire to share this accomplishment.'
 	];
-	let windowHeight: number;
+
+	const AVATARS: Avatar[] = [
+		{
+			name: 'Kitten',
+			imageSrc: 'https://placekitten.com/200/200',
+			imageAlt: 'A kitten'
+		},
+		{
+			name: 'Kitten',
+			imageSrc: 'https://placekitten.com/201/200',
+			imageAlt: 'A kitten'
+		},
+		{
+			name: 'Kitten',
+			imageSrc: 'https://placekitten.com/202/202',
+			imageAlt: 'A kitten'
+		},
+		{
+			name: 'Kitten',
+			imageSrc: 'https://placekitten.com/203/200',
+			imageAlt: 'A kitten'
+		}
+	];
+
+	const PROJECTS: Project[] = [
+		{
+			title: 'Project #1',
+			imageSrc: 'https://placekitten.com/400/250',
+			imageAlt: 'A kitten',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		},
+		{
+			title: 'Project #2',
+			imageSrc: 'https://placekitten.com/400/251',
+			imageAlt: 'A kitten',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		},
+		{
+			title: 'Project #3',
+			imageSrc: 'https://placekitten.com/400/252',
+			imageAlt: 'A kitten',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		},
+		{
+			title: 'Project #4',
+			imageSrc: 'https://placekitten.com/400/253',
+			imageAlt: 'A kitten',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+		}
+	];
+
 	let bottomBar: HTMLDivElement;
 	let bottomBarThreshold: number = 0;
 	let yScrollPoint: number = 0;
-	$: showBottomBar = true;
+	let projectsDiv: HTMLDivElement;
+	let comradesDiv: HTMLDivElement;
+
+	$: showBottomBarText = true;
+
+	function setHeaderScrollPoints() {
+		console.log();
+		projectsScrollPoint.set(projectsDiv.offsetTop - 50 || 0);
+		comradesScrollPoint.set(comradesDiv.offsetTop - 50 || 0);
+	}
 
 	function onScroll() {
 		if (yScrollPoint > bottomBarThreshold) {
-			showBottomBar = true;
+			showBottomBarText = true;
 		} else {
-			showBottomBar = false;
+			showBottomBarText = false;
 		}
 	}
 
-	let bottomBarBeingMeasured = false;
 	function setBottomBarThreshold() {
-		if (!bottomBarBeingMeasured) {
-			bottomBarBeingMeasured = true;
-			showBottomBar = true;
-			let bottomBarInterval = setInterval(() => {
-				let bodyHeight: number = document.body.scrollHeight;
-				let bottomBarHeight = bottomBar.clientHeight;
-				bottomBarThreshold =
-					bodyHeight - windowHeight - BOTTOM_BAR_EXTENSION_FACTOR * bottomBarHeight;
-				showBottomBar = false;
-				clearInterval(bottomBarInterval);
-				bottomBarBeingMeasured = false;
-			}, 50);
-		}
+		bottomBarThreshold =
+			document.body.scrollHeight -
+			window.innerHeight -
+			BOTTOM_BAR_EXTENSION_FACTOR * bottomBar.clientHeight;
 	}
 
 	onMount(() => {
 		setBottomBarThreshold();
+		setHeaderScrollPoints();
 	});
 </script>
 
-<svelte:window
-	bind:scrollY={yScrollPoint}
-	on:scroll={onScroll}
-	bind:innerHeight={windowHeight}
-	on:resize={setBottomBarThreshold}
-/>
+<svelte:window bind:scrollY={yScrollPoint} on:scroll={onScroll} on:resize={setBottomBarThreshold} />
 
 <!-- Collatio Header -->
 <div class="mx-auto flex h-screen min-h-screen w-fit flex-col">
@@ -80,47 +132,25 @@
 	</div>
 </div>
 <!-- Projects -->
-<div class="flex flex-col mx-4 mt-10 pb-4 gap-6">
-	<ProjectCard
-		title="Project #1"
-		imageAlt="A ktten"
-		imageSrc="https://placekitten.com/400/250"
-		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-	/>
-	<ProjectCard
-		title="Project #2"
-		imageAlt="A ktten"
-		imageSrc="https://placekitten.com/400/251"
-		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-	/>
-	<ProjectCard
-		title="Project #3"
-		imageAlt="A ktten"
-		imageSrc="https://placekitten.com/400/252"
-		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-	/>
-	<ProjectCard
-		title="Project #4"
-		imageAlt="A ktten"
-		imageSrc="https://placekitten.com/400/253"
-		description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-	/>
+<div bind:this={projectsDiv} class="flex flex-col mx-4 mt-10 pb-4 gap-6">
+	{#each PROJECTS as project}
+		<ProjectCard {project} />
+	{/each}
 </div>
 <!-- Avatar -->
-<div class="mx-10 mt-10 pb-3">
-	<Avatar imageSrc="https://placekitten.com/200/200" imageAlt="A kitten" name="Kitten" />
-	<Avatar imageSrc="https://placekitten.com/201/200" imageAlt="A kitten" name="Kitten" />
-	<Avatar imageSrc="https://placekitten.com/202/202" imageAlt="A kitten" name="Kitten" />
-	<Avatar imageSrc="https://placekitten.com/203/200" imageAlt="A kitten" name="Kitten" />
+<div bind:this={comradesDiv} class="mx-10 mt-10 pb-3">
+	{#each AVATARS as avatar}
+		<AvatarView {avatar} />
+	{/each}
 </div>
 <!-- Bottom Bar Gag -->
-{#if showBottomBar}
-	<div class="relative bg-black overflow-clip" bind:this={bottomBar}>
+<div class="relative h-20 bg-black overflow-clip" bind:this={bottomBar}>
+	{#if showBottomBarText}
 		<p
 			transition:fly={{ y: 100, easing: cubicIn }}
 			class="text-white mx-8 pb-4 text-center text-sm text-mono"
 		>
 			{BOTTOM_BAR_JOKE_TEXT[Math.floor(Math.random() * BOTTOM_BAR_JOKE_TEXT.length)]}
 		</p>
-	</div>
-{/if}
+	{/if}
+</div>
