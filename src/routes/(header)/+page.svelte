@@ -112,39 +112,72 @@
 	});
 </script>
 
-<svelte:window bind:scrollY={yScrollPoint} on:scroll={onScroll} on:resize={setBottomBarThreshold} />
+<svelte:window
+	bind:scrollY={yScrollPoint}
+	on:scroll={onScroll}
+	on:resize={() => {
+		setBottomBarThreshold();
+		setHeaderScrollPoints();
+	}}
+/>
 
-<!-- Collatio Header -->
-<div class="mx-auto flex h-screen min-h-screen w-fit flex-col">
-	<div class="mt-40 flex flex-row items-stretch">
-		<p class="font-sans text-6xl text-white">Collatio</p>
-		<p class="mt-auto pl-2 align-middle font-mono text-2xl font-light text-white">(noun)</p>
+<!-- Collatio Hero -->
+<div class="flex h-screen w-screen min-h-screen flex-col">
+	<div class="m-auto flex flex-row lg:w-2/3 max-w-screen-2xl">
+		<div class="m-auto flex flex-col">
+			<div class="mt-40 flex flex-row items-stretch md:mt-0">
+				<p class="font-sans text-6xl text-white md:text-8xl">Collatio</p>
+				<p
+					class="mt-auto pl-2 align-middle font-mono text-2xl font-light text-white pb-3 md:text-4xl"
+				>
+					(noun)
+				</p>
+			</div>
+			<p class="font-sans text-xl font-light text-white md:text-2xl md:ml-2">
+				Col·la·tio | \kolˈlaː.ti.oː\
+			</p>
+			<ol class="mt-6 list-inside font-mono text-sm font-light text-white md:text-lg">
+				<li>1. Collecting (bringing together)</li>
+				<li>2. Union, combination</li>
+				<li>3. Comparison, collation (of facts)</li>
+			</ol>
+		</div>
+		<div class="w-px h-96 my-auto min-w-fit bg-zinc-600 mx-8 hidden lg:block" />
+		<p
+			class="text-white m-auto font-mono text-md max-h-96 overflow-scroll align-middle pl-16 hidden lg:block"
+		>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+			labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+			consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+			aliqua.
+		</p>
 	</div>
-	<p class="font-sans text-xl font-light text-white">Col·la·tio | \kolˈlaː.ti.oː\</p>
-	<ol class="mt-6 list-inside font-mono text-sm font-light text-white">
-		<li>1. Collecting (bringing together)</li>
-		<li>2. Union, combination</li>
-		<li>3. Comparison, collation (of facts)</li>
-	</ol>
-	<span class="grow" />
-	<div class="bottom-10 mx-auto w-fit">
+	<span class="grow lg:hidden" />
+	<div class="bottom-10 mx-auto w-fit lg:hidden">
 		<Chevron />
 	</div>
 </div>
 <!-- Projects -->
-<div bind:this={projectsDiv} class="flex flex-col mx-4 mt-10 pb-4 gap-6">
+<div
+	bind:this={projectsDiv}
+	class="flex flex-col mx-4 mt-10 pb-4 gap-6 md:flex-row md:max-w-screen-2xl md:mx-auto"
+>
 	{#each PROJECTS as project}
 		<ProjectCard {project} />
 	{/each}
 </div>
 <!-- Avatar -->
-<div bind:this={comradesDiv} class="mx-10 mt-10 pb-3">
+<div
+	bind:this={comradesDiv}
+	class="flex flex-col mx-10 mt-10 pb-3 md:flex-row md:mx-auto md:justify-around md:max-w-screen-2xl"
+>
 	{#each AVATARS as avatar}
 		<AvatarView {avatar} />
 	{/each}
 </div>
 <!-- Bottom Bar Gag -->
-<div class="relative h-20 bg-black overflow-clip" bind:this={bottomBar}>
+<div class="relative h-20 bg-black overflow-clip md:h-12" bind:this={bottomBar}>
 	{#if showBottomBarText}
 		<p
 			transition:fly={{ y: 100, easing: cubicIn }}

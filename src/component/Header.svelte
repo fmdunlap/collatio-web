@@ -7,7 +7,7 @@
 </script>
 
 <header class="max-w-screen fixed flex w-screen flex-row bg-black z-10">
-	<div class="my-2 flex flex-grow justify-around md:ml-4 md:justify-start md:gap-x-12">
+	<div class="my-2 flex flex-grow justify-around md:ml-8 md:justify-start md:gap-x-12">
 		<button
 			class="font-sans text-lg text-white hover:cursor-pointer hover:underline"
 			on:click={() => {
