@@ -6,76 +6,11 @@
 	import { fly } from 'svelte/transition';
 	import { cubicIn } from 'svelte/easing';
 	import { projectsScrollPoint, comradesScrollPoint } from '../../stores/HeaderScrollPointStore';
-	import type { Avatar } from '../../types/avatar';
-	import type { Project } from '../../types/project';
+	import { AVATARS } from '../../data/avatar';
+	import { PROJECTS } from '../../data/project';
+	import { JOKES } from '../../data/joke';
 
 	const BOTTOM_BAR_EXTENSION_FACTOR = 1.15;
-	const BOTTOM_BAR_JOKE_TEXT = [
-		"Congratulations! You've reached the elusive footer bar. Take a moment to celebrate this small victory.",
-		"Are you lost? Don't worry, you're not alone. Very few adventurers make it down here.",
-		"Hidden treasure lies in the footer of this website. You're one of the lucky few who discovered it.",
-		"This is the footer - where unicorns dance and dreams come true. You're officially part of the magic.",
-		'Feeling accomplished? You made it to the bottom. Now go back to the top and start all over again.',
-		'Welcome to the Footer, a mythical land of secrets and surprises. Have you brought your sense of adventure?',
-		"If you're reading this, you deserve a gold star for scrolling skills. Well done!",
-		'Footer bar: where legends are made. Consider yourself an explorer of the deepest corners of the website.',
-		'The bottom of the page is a lonely place. Thanks for keeping me company down here!',
-		'Warning: Scrolling to the bottom may cause a sense of achievement and an overwhelming desire to share this accomplishment.'
-	];
-
-	const AVATARS: Avatar[] = [
-		{
-			name: 'Kitten',
-			imageSrc: 'https://placekitten.com/200/200',
-			imageAlt: 'A kitten'
-		},
-		{
-			name: 'Kitten',
-			imageSrc: 'https://placekitten.com/201/200',
-			imageAlt: 'A kitten'
-		},
-		{
-			name: 'Kitten',
-			imageSrc: 'https://placekitten.com/202/202',
-			imageAlt: 'A kitten'
-		},
-		{
-			name: 'Kitten',
-			imageSrc: 'https://placekitten.com/203/200',
-			imageAlt: 'A kitten'
-		}
-	];
-
-	const PROJECTS: Project[] = [
-		{
-			title: 'Project #1',
-			imageSrc: 'https://placekitten.com/400/250',
-			imageAlt: 'A kitten',
-			description:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-		},
-		{
-			title: 'Project #2',
-			imageSrc: 'https://placekitten.com/400/251',
-			imageAlt: 'A kitten',
-			description:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-		},
-		{
-			title: 'Project #3',
-			imageSrc: 'https://placekitten.com/400/252',
-			imageAlt: 'A kitten',
-			description:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-		},
-		{
-			title: 'Project #4',
-			imageSrc: 'https://placekitten.com/400/253',
-			imageAlt: 'A kitten',
-			description:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-		}
-	];
 
 	let bottomBar: HTMLDivElement;
 	let bottomBarThreshold: number = 0;
@@ -187,7 +122,7 @@
 			transition:fly={{ y: 100, easing: cubicIn }}
 			class="text-mono mx-8 pb-4 text-center text-sm text-white"
 		>
-			{BOTTOM_BAR_JOKE_TEXT[Math.floor(Math.random() * BOTTOM_BAR_JOKE_TEXT.length)]}
+			{JOKES[Math.floor(Math.random() * JOKES.length)]}
 		</p>
 	{/if}
 </div>

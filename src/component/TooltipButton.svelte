@@ -54,7 +54,7 @@
 			on:introstart={setTooltipBounds}
 		>
 			<slot name="tooltip">
-				<p class="m-4 text-center text-white">
+				<p class="m-4 text-center font-mono text-white">
 					{tooltipText}
 				</p>
 			</slot>

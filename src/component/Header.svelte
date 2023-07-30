@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { projectsScrollPoint, comradesScrollPoint } from '../stores/HeaderScrollPointStore';
 	import TooltipButton from './TooltipButton.svelte';
+	import { CONTACT_EMAIL } from '../data/contact';
 
 	function scrollToPoint(point: number) {
 		scrollTo({ top: point, behavior: 'smooth' });
@@ -25,9 +26,9 @@
 		>
 		<TooltipButton
 			buttonText="Contact"
-			tooltipText="Copied fakeemail@example.com"
+			tooltipText="Copied {CONTACT_EMAIL}"
 			onClickAction={() => {
-				navigator.clipboard.writeText('fakeemail@example.com');
+				navigator.clipboard.writeText(CONTACT_EMAIL);
 			}}
 		/>
 	</div>
