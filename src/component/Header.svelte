@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { projectsScrollPoint, comradesScrollPoint } from '../stores/HeaderScrollPointStore';
+	import TooltipButton from './TooltipButton.svelte';
 
 	function scrollToPoint(point: number) {
 		scrollTo({ top: point, behavior: 'smooth' });
@@ -22,9 +23,12 @@
 				scrollToPoint($comradesScrollPoint);
 			}}>Comrades</button
 		>
-		<a
-			class="font-sans text-lg text-white hover:cursor-pointer hover:underline"
-			href="mailto:email@example.com">Contact</a
-		>
+		<TooltipButton
+			buttonText="Contact"
+			tooltipText="Copied fakeemail@example.com"
+			onClickAction={() => {
+				navigator.clipboard.writeText('fakeemail@example.com');
+			}}
+		/>
 	</div>
 </header>
