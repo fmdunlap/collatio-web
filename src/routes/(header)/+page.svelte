@@ -159,30 +159,26 @@
 	</div>
 </div>
 <!-- Projects -->
-<h1
-	bind:this={projectsDiv}
-	class="my-14 text-center font-sans text-5xl text-white md:mx-auto md:max-w-screen-2xl md:text-start"
->
-	Our Projects
-</h1>
-<div class="mx-4 mt-10 flex flex-col gap-6 pb-4 md:mx-auto md:max-w-screen-2xl md:flex-row">
-	{#each PROJECTS as project}
-		<ProjectCard {project} />
-	{/each}
+<div bind:this={projectsDiv} class="mx-auto px-4 md:max-w-screen-2xl">
+	<h1 class="my-14 text-center font-sans text-5xl text-white md:mx-auto md:text-start">
+		Our Projects
+	</h1>
+	<div class="mx-4 mt-10 flex flex-col gap-6 pb-4 md:mx-auto md:flex-row">
+		{#each PROJECTS as project}
+			<ProjectCard {project} />
+		{/each}
+	</div>
 </div>
 <!-- Avatar -->
-<h1
-	bind:this={comradesDiv}
-	class="my-14 text-center font-sans text-5xl text-white md:mx-auto md:max-w-screen-2xl md:text-start"
->
-	The Comrades
-</h1>
-<div
-	class="mx-10 mt-10 flex flex-col pb-3 md:mx-auto md:max-w-screen-2xl md:flex-row md:justify-around"
->
-	{#each AVATARS as avatar}
-		<AvatarView {avatar} />
-	{/each}
+<div bind:this={comradesDiv} class="mx-auto px-4 md:max-w-screen-2xl">
+	<h1 class="my-14 text-center font-sans text-5xl text-white md:mx-auto md:text-start">
+		The Comrades
+	</h1>
+	<div class="mx-10 mt-10 flex flex-col pb-3 md:mx-auto md:flex-row md:justify-around">
+		{#each AVATARS as avatar}
+			<AvatarView {avatar} />
+		{/each}
+	</div>
 </div>
 <!-- Bottom Bar Gag -->
 <div class="relative h-20 overflow-clip bg-black md:h-12" bind:this={bottomBar}>
