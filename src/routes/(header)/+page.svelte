@@ -87,8 +87,8 @@
 
 	function setHeaderScrollPoints() {
 		console.log();
-		projectsScrollPoint.set(projectsDiv.offsetTop - 50 || 0);
-		comradesScrollPoint.set(comradesDiv.offsetTop - 50 || 0);
+		projectsScrollPoint.set(projectsDiv.offsetTop - 70 || 0);
+		comradesScrollPoint.set(comradesDiv.offsetTop - 70 || 0);
 	}
 
 	function onScroll() {
@@ -122,19 +122,19 @@
 />
 
 <!-- Collatio Hero -->
-<div class="flex h-screen w-screen min-h-screen flex-col">
-	<div class="m-auto flex flex-row lg:w-2/3 max-w-screen-2xl">
+<div class="flex h-screen min-h-screen w-screen flex-col">
+	<div class="m-auto flex max-w-screen-2xl flex-row lg:w-2/3">
 		<div class="m-auto flex flex-col">
 			<div class="mt-40 flex flex-row items-stretch md:mt-0">
 				<p class="font-sans text-6xl text-white md:text-8xl">Collatio</p>
 				<p
-					class="mt-auto pl-2 align-middle font-mono text-2xl font-light text-white pb-3 md:text-4xl"
+					class="mt-auto pb-3 pl-2 align-middle font-mono text-2xl font-light text-white md:text-4xl"
 				>
 					(noun)
 				</p>
 			</div>
-			<p class="font-sans text-xl font-light text-white md:text-2xl md:ml-2">
-				Col·la·tio | \kolˈlaː.ti.oː\
+			<p class="font-sans text-xl font-light text-white md:ml-2 md:text-2xl">
+				Col·la·tio | \kol`la:.ti.o:\
 			</p>
 			<ol class="mt-6 list-inside font-mono text-sm font-light text-white md:text-lg">
 				<li>1. Collecting (bringing together)</li>
@@ -142,9 +142,9 @@
 				<li>3. Comparison, collation (of facts)</li>
 			</ol>
 		</div>
-		<div class="w-px h-96 my-auto min-w-fit bg-zinc-600 mx-8 hidden lg:block" />
+		<div class="mx-8 my-auto hidden h-96 w-px min-w-fit bg-zinc-600 lg:block" />
 		<p
-			class="text-white m-auto font-mono text-md max-h-96 overflow-scroll align-middle pl-16 hidden lg:block"
+			class="text-md m-auto hidden max-h-96 overflow-scroll pl-16 align-middle font-mono text-white lg:block"
 		>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 			labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -159,29 +159,37 @@
 	</div>
 </div>
 <!-- Projects -->
-<div
+<h1
 	bind:this={projectsDiv}
-	class="flex flex-col mx-4 mt-10 pb-4 gap-6 md:flex-row md:max-w-screen-2xl md:mx-auto"
+	class="my-14 text-center font-sans text-5xl text-white md:mx-auto md:max-w-screen-2xl md:text-start"
 >
+	Our Projects
+</h1>
+<div class="mx-4 mt-10 flex flex-col gap-6 pb-4 md:mx-auto md:max-w-screen-2xl md:flex-row">
 	{#each PROJECTS as project}
 		<ProjectCard {project} />
 	{/each}
 </div>
 <!-- Avatar -->
-<div
+<h1
 	bind:this={comradesDiv}
-	class="flex flex-col mx-10 mt-10 pb-3 md:flex-row md:mx-auto md:justify-around md:max-w-screen-2xl"
+	class="my-14 text-center font-sans text-5xl text-white md:mx-auto md:max-w-screen-2xl md:text-start"
+>
+	The Comrades
+</h1>
+<div
+	class="mx-10 mt-10 flex flex-col pb-3 md:mx-auto md:max-w-screen-2xl md:flex-row md:justify-around"
 >
 	{#each AVATARS as avatar}
 		<AvatarView {avatar} />
 	{/each}
 </div>
 <!-- Bottom Bar Gag -->
-<div class="relative h-20 bg-black overflow-clip md:h-12" bind:this={bottomBar}>
+<div class="relative h-20 overflow-clip bg-black md:h-12" bind:this={bottomBar}>
 	{#if showBottomBarText}
 		<p
 			transition:fly={{ y: 100, easing: cubicIn }}
-			class="text-white mx-8 pb-4 text-center text-sm text-mono"
+			class="text-mono mx-8 pb-4 text-center text-sm text-white"
 		>
 			{BOTTOM_BAR_JOKE_TEXT[Math.floor(Math.random() * BOTTOM_BAR_JOKE_TEXT.length)]}
 		</p>
