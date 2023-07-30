@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Project } from '../types/project';
+	import type { Project } from '../data/project';
 
 	export let project: Project;
 </script>
@@ -12,7 +12,7 @@
 		{project.description}
 	</p>
 	<div class="text-end p-4">
-		<a class="text-white text-lg underline hover:text-gray-300" href="http://google.com"
+		<a class="text-white text-lg underline hover:text-gray-300" href={project.projectUrl}
 			>See More -&gt;</a
 		>
 	</div>
