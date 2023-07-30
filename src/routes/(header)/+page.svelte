@@ -81,11 +81,11 @@
 		<p
 			class="text-md m-auto hidden max-h-96 overflow-scroll pl-16 align-middle font-mono text-white lg:block"
 		>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-			labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-			eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
-			consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-			aliqua.
+			We are Collatio - a unique collective of developers united by the principles of collaboration,
+			innovation, and informed decision-making. Our diverse backgrounds and skills converge to
+			deliver innovative, effective, and future-proof digital solutions. Here, creativity meets
+			data-driven insights, ensuring every code we craft not only pushes the boundaries of what's
+			possible but is also grounded in reality.
 		</p>
 	</div>
 	<span class="grow lg:hidden" />
